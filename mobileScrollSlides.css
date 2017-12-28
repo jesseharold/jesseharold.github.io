@@ -12,6 +12,11 @@
   left: 0;
 }
 
+.mss-active {
+  background-color: white;
+  z-index: 100;
+}
+
 .mss-img {
   width: 100%;
   max-height: 50%;
@@ -23,12 +28,8 @@
   width: 100%;
 }
 
-.mss-active {
-  z-index: 100;
-}
-
-.mss-text::after {
-  content: 'V';
+.mss-arrow {
   cursor: pointer;
   display: block;
+  padding: 20px;
 }
