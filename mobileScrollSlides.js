@@ -1,23 +1,28 @@
 $(function(){
   // OPTIONS
   var cardChangeSpeed = 1000;
-  var mainSelector = "#mobile-scroll-slides";
   var slideSelector = "#mobile-scroll-slides > div";
+  // if you don't want the top of the slide to be at the
+  // very top of the window, for absolute nav bars
   var navbarOffset = 0;
+  var arrowHTML = "&darr;"
 
-  $(slideSelector).append("<div class='mss-arrow'>VVV</div>").on("click", function(){
-    changeSlide($(this).index() + 1);
-  });
-
-  var listeningForScroll = true;
-  var checkScroll;
+  // event listeners
+  $(slideSelector)
+    .append("<div class='mss-arrow'>" + arrowHTML + "</div>")
+    .on("click", function(e){
+      changeSlide($(this).index() + 1);
+    })
+    .css("height", window.innerHeight);
 
   $(document).on("scroll", scrollHandler);
 
+  // global vars
+  var listeningForScroll = true;
+  var checkScroll;
 
   function scrollHandler(e){
     //console.log("scrollHandler");
-    // if someone scrolls using a mouse or scrollbar, update current slide to account for scroll position
     if (listeningForScroll){
       clearTimeout(checkScroll);
       checkScroll = setTimeout(scrollStopped, 200);
@@ -26,7 +31,7 @@ $(function(){
 
   function scrollStopped(){
     // console.log("scrollStopped");
-    // find nearest slide and change to it
+    // find nearest slide
     var pos = $(window).scrollTop();
     var bestDistance = 1000;
     var closestElement;
@@ -41,7 +46,7 @@ $(function(){
 
   function changeSlide(index, speed=cardChangeSpeed) {
     // console.log("changeSlide", index);
-
+    // make next slide active
     listeningForScroll = false;
     var oldSlide = $(slideSelector + ".mss-active");
     var current = oldSlide.index();
@@ -59,7 +64,7 @@ $(function(){
   }
 
   function animateSlides(next, jumpto, speed){
-    // snap window to position
+    // scroll and snap window to position
     var scrollTo = $(next).offset().top - navbarOffset;
     if (jumpto){
       $("html, body").scrollTop(scrollTo);
