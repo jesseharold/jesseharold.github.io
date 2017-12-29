@@ -1,20 +1,16 @@
 #mobile-scroll-slides {
   background-color: teal;
   text-align: center;
-}
-
-#mobile-scroll-slides > div {
-  background-color: #dec8c8;
   width: 100%;
-  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.mss-active {
-  background-color: white;
-  z-index: 100;
+#mobile-scroll-slides > div {
+  background-color: #dec8c8;
+  height: 100vh;
+  position: relative;
 }
 
 .mss-img {
@@ -32,4 +28,7 @@
   cursor: pointer;
   display: block;
   padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
